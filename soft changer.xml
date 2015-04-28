@@ -1,0 +1,42 @@
+local CONFIG = {  
+    DEFAULT_BOOTS = "boots of haste",  
+    CONSIDER_TYPE = mppc,  
+    CONSIDER_EQUIP = {48, 52},  
+    CONSIDER_UNEQUIP = {88, 92},  
+}  
+  
+-- ENGINE-- DON'T CHANGE NOTHING BELOW THIS LINE  
+  
+local SCRIPT = SCRIPT or {  
+    NAME = "Soft Boots Changer",  
+    VERSION = "1.0",  
+}  
+  
+CONFIG.DEFAULT_BOOTS = Item.GetID(CONFIG.DEFAULT_BOOTS, 1)  
+  
+local RANDOM_EQUIP = math.random(CONFIG.CONSIDER_EQUIP[1], CONFIG.CONSIDER_EQUIP[2])  
+local RANDOM_UNEQUIP = math.random(CONFIG.CONSIDER_UNEQUIP[1], CONFIG.CONSIDER_UNEQUIP[2])  
+  
+if Boots.ID() == 3549 and (Self.isInProtectionZone() or CONFIG.CONSIDER_TYPE >= RANDOM_UNEQUIP) then  
+    if itemcount(CONFIG.DEFAULT_BOOTS) > 0 then  
+        Self.EquipBoots(CONFIG.DEFAULT_BOOTS)  
+        wait(1100, 1200)  
+        else  
+        Self.UnequipItem("boots")  
+        wait(1100, 1200)  
+    end  
+elseif Boots.ID() == 6530 or Boots.ID() == 0 then  
+    if CONFIG.CONSIDER_TYPE <= RANDOM_EQUIP and itemcount(6529) > 0 and (not Self.isInProtectionZone()) then  
+        Self.EquipBoots(6529)  
+        wait(1100, 1200)  
+    elseif itemcount(CONFIG.DEFAULT_BOOTS) > 0 then  
+        Self.EquipBoots(CONFIG.DEFAULT_BOOTS)  
+        wait(1100, 1200)  
+    elseif Boots.ID() > 0 then  
+        Self.UnequipItem("boots")  
+        wait(1100, 1200)  
+           end  
+elseif Boots.ID() == CONFIG.DEFAULT_BOOTS and CONFIG.CONSIDER_TYPE <= RANDOM_EQUIP and itemcount(6529) > 0 and (not Self.isInProtectionZone()) then  
+    Self.EquipBoots(6529)  
+    wait(1100, 1200)  
+end   vita') end 

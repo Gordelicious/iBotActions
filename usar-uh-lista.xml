@@ -1,0 +1,20 @@
+-- [[ INIT START ]] --  
+    local CONFIG = {  
+        RUNE_NAME = "ultimate healing rune",  
+        PLAYERS = {  
+            {NAME = "NAME 1", HPPC = 40},  
+            {NAME = "NAME 2", HPPC = 50},  
+        },  
+    }  
+-- [[ INIT END ]] --  
+local CREATURE_TO_HEAL, HPPC_TO_HEAL = nil, 101  
+for CREATURE in Creature.GetAll("ps") do  
+    local PLAYER_FOUND = table.find(CONFIG.PLAYERS, CREATURE:Name(), "NAME")  
+      
+    if (CREATURE:isValid() and CREATURE:isAlive() and PLAYER_FOUND and CREATURE:HealthPercent() < CONFIG.PLAYERS[PLAYER_FOUND].HPPC and CREATURE:HealthPercent() < HPPC_TO_HEAL) then  
+        CREATURE_TO_HEAL, HPPC_TO_HEAL = CREATURE, CREATURE:HealthPercent()  
+    end  
+end  
+if (Creature.isInstance(CREATURE_TO_HEAL)) then  
+    Self.UseItemOnCreature(CONFIG.RUNE_NAME, CREATURE_TO_HEAL:ID())  
+    System.Wait(1000) end

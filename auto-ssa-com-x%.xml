@@ -1,0 +1,3 @@
+local AmuletToMove = 'stone skin amulet'  local Healthpercenttomove = 30   
+if hppc <= Manapercenttomove and amulet == 0 then           
+ moveitems(AmuletToMove, 'amulet')   end    

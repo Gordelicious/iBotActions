@@ -1,0 +1,3 @@
+if not hasted and not pzone and maround(7) == 0 then   
+     cast("utani hur")   
+     wait(1000) end  
